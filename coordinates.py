@@ -90,10 +90,12 @@ def naive_euclidian_distance(point1: Tuple[int, int], point2: Tuple[int, int]) -
 
 def get_closest_coord_to_coord(coord: Tuple[int, int], coord_stars: List[Tuple[int, int]],
                                num_stars: int) -> List[Tuple[int, int]]:
-    cluster = []
+    star_heap = []
     for star in coord_stars:
-        heapq.heappush(cluster, (naive_euclidian_distance(coord, star), star))
+        heapq.heappush(star_heap, (naive_euclidian_distance(coord, star), star))
+
+    cluster = []
     while len(cluster) < num_stars:
-        dist, star_coord = heapq.heappop(cluster)
+        dist, star_coord = heapq.heappop(star_heap)
         cluster.append(star_coord)
     return cluster

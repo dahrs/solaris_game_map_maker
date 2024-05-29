@@ -31,7 +31,10 @@ def main(player_amount: int, map_size: int = 100, total_stars: int = 100,
     # save to json
     json_d = make_dictionary(capitals, binaries, nebulas, asteroidfields, blackholes, pulsars,
                              wormholes, stars, warpgates, players_stars)
-    json_l = [dd for dd in json_d.values()]
+    json_l = {
+        'stars': [dd for dd in json_d.values()],
+        'carriers': [],
+    }
     # dump to file
     with open(out_path, 'w', encoding='utf-8') as out_f:
         json.dump(json_l, out_f)
